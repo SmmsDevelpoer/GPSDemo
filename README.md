@@ -1,2 +1,3 @@
-# GPSDemo
-A demo for gps connection
+# GPS Demo
+A demo for u-blox GPS connection
+Used Nestjs
