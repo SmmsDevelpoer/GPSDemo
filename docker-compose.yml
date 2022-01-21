@@ -16,6 +16,7 @@ services:
     restart: always
     volumes:
       - ./log/gpsdemo:/code/log
+      - /dev:/dev
     networks:
       - smms-network
 networks:

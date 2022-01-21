@@ -1,16 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import * as SerialPort from 'serialport';
 import { LogRecordService } from './logger/logger.service';
+import * as SerialPort from 'serialport';
+import { PortInfo } from 'serialport';
 
 @Injectable()
 export class AppService {
-  // private comDevs: SerialPort[];
+  private uBlox: SerialPort;
 
-  constructor(
-    private readonly logger: LogRecordService
-  ) {
-
-  }
+  constructor(private readonly logger: LogRecordService) {}
 
   getHello(): string {
     return 'Hello World!';
@@ -18,11 +15,15 @@ export class AppService {
 
   public async turnOnUBlox() {
     await this.getUBloxComDevPath();
-    // this.comDevs = new SerialPort(path, { baudRate: 38400 }, (error: Error) => {
-    //   if (error) {
-    //     console.debug('error', error);
-    //   }
-    // });
+    const path = '/dev/ttyS1';
+    this.uBlox = new SerialPort(path, { baudRate: 38400 }, (error: Error) => {
+      if (error) {
+        this.logger.error(
+          `Com port open failed, device path "${path}"`,
+          'serial port',
+        );
+      }
+    });
     //
     // this.uBlox.on('open', (error) => {
     //   console.log('serial port open success.');
@@ -41,9 +42,7 @@ export class AppService {
   }
 
   private async getUBloxComDevPath() {
-    console.debug('11111111111111111');
-    let comPorts = await SerialPort.list();
-    console.debug('22222222222222222');
+    const comPorts = await SerialPort.list();
     comPorts.forEach((comPort) => {
       this.logger.log('Com port device info: ' + JSON.stringify(comPort));
     });
