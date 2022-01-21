@@ -24,6 +24,7 @@ export class AppService {
         { baudRate: 38400, dataBits: 8, stopBits: 1, parity: 'none' },
         (error: Error) => {
           if (error) {
+            console.debug('error', error);
             this.logger.error(
               JSON.stringify(error),
               `Com port open failed, device path "${path}"`,

@@ -49,6 +49,7 @@ RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 RUN apt-get -y update
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get --assume-yes install udev
 
 WORKDIR /code
