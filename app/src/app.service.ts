@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { LogRecordService } from './logger/logger.service';
 import * as SerialPort from 'serialport';
-import { PortInfo } from 'serialport';
 
 @Injectable()
 export class AppService {
@@ -14,32 +13,28 @@ export class AppService {
   }
 
   public async turnOnUBlox() {
-    await this.getUBloxComDevPath();
-    // let path = '/dev/ttyS';
-    for (let index = 0; index < 4; index++) {
-      let path = '/dev/ttyS';
-      path += String(index);
-      this.uBlox = new SerialPort(
-        path,
-        { baudRate: 38400, dataBits: 8, stopBits: 1, parity: 'none' },
-        (error: Error) => {
-          if (error) {
-            console.debug('error', error);
-            this.logger.error(
-              JSON.stringify(error),
-              `Com port open failed, device path "${path}"`,
-            );
-          }
-        },
-      );
-    }
-    //
-    // this.uBlox.on('open', (error) => {
-    //   console.log('serial port open success.');
-    //   if (error) {
-    //     console.log('serial port open fail.');
-    //   }
-    // });
+    // await this.getUBloxComDevPath();
+    const path = '/dev/ttyS1';
+    this.uBlox = new SerialPort(
+      path,
+      { baudRate: 38400, dataBits: 8, stopBits: 1, parity: 'none' },
+      (error: Error) => {
+        if (error) {
+          console.debug('error', error);
+          this.logger.error(
+            JSON.stringify(error),
+            `Com port open failed, device path "${path}"`,
+          );
+        }
+      },
+    );
+
+    this.uBlox.on('open', (error) => {
+      console.log('serial port open success.');
+      if (error) {
+        console.log('serial port open fail.');
+      }
+    });
     //
     // const readLine = SerialPort.parsers.Readline;
     // const parser = new readLine({ delimiter: '\r\n' });
