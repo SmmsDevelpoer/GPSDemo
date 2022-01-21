@@ -43,7 +43,6 @@ export class LogRecordService extends Logger {
   }
 
   log(message: string) {
-    console.debug('asdfasdfasdf', join(process.cwd(), 'log', 'info.log'));
     const logMsg = this.formatLog(message);
     fs.appendFile(
       join(process.cwd(), 'log', 'info.log'),
