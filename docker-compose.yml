@@ -18,7 +18,7 @@ services:
       - ./log/gpsdemo:/code/log
       - /dev:/dev
     devices:
-      - "/dev/ttyS1:/dev/ttyS1"
+      - /dev/ttyS1:/dev/ttyS1
     networks:
       - smms-network
 networks:
