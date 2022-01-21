@@ -15,8 +15,9 @@ export class AppService {
 
   public async turnOnUBlox() {
     await this.getUBloxComDevPath();
-    let path = '/dev/ttyS';
+    // let path = '/dev/ttyS';
     for (let index = 0; index < 4; index++) {
+      let path = '/dev/ttyS';
       path += String(index);
       this.uBlox = new SerialPort(
         path,
