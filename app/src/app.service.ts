@@ -19,8 +19,8 @@ export class AppService {
     this.uBlox = new SerialPort(path, { baudRate: 38400 }, (error: Error) => {
       if (error) {
         this.logger.error(
+          JSON.stringify(error),
           `Com port open failed, device path "${path}"`,
-          'serial port',
         );
       }
     });
