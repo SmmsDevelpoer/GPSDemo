@@ -16,9 +16,9 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('scanComPort')
-  scanComPort(): string {
-    this.appService.turnOnUBlox();
+  @Get('writeComPort')
+  writeComPort(): string {
+    this.appService.writeToUBlox();
     return this.appService.getHello();
   }
 }

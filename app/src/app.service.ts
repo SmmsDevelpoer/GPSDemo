@@ -44,6 +44,15 @@ export class AppService {
     });
   }
 
+  public writeToUBlox() {
+    const data = [0xb5, 0x62, 0x0a, 0x04, 0x00, 0x00, 0x0e, 0x34];
+    this.uBlox.write(data, (error) => {
+      if (error) {
+        this.logger.error('Error on write data to com port', '');
+      }
+    });
+  }
+
   public async getSerialPortList() {
     const comPorts = await SerialPort.list();
     comPorts.forEach((comPort) => {
