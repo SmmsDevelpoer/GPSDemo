@@ -12,8 +12,8 @@ export class AppService {
     return 'Hello World!';
   }
 
-  public async turnOnUBlox() {
-    const path = '/dev/ttyS1';
+  public async receiveUBlox() {
+    const path = process.env.COMDEVPATH;
     this.uBlox = new SerialPort(
       path,
       { baudRate: 38400, dataBits: 8, stopBits: 1, parity: 'none' },

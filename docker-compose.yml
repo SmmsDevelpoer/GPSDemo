@@ -13,6 +13,8 @@ services:
       - target: 3000
         published: 3000
         protocol: tcp
+    environment:
+      - COMDEVPATH=/dev/ttyS1
     restart: always
     volumes:
       - ./log/gpsdemo:/code/log

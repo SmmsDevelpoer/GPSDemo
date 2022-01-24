@@ -7,10 +7,13 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    console.debug(process.env.NODE_ENV === 'development'
-      ? ['log', 'debug', 'error', 'verbose', 'warn']
-      : ['error', 'warn']);
-    return this.appService.getHello()
+    return this.appService.getHello();
+  }
+
+  @Get('openComPort')
+  openComPort(): string {
+    this.appService.receiveUBlox();
+    return this.appService.getHello();
   }
 
   @Get('scanComPort')
