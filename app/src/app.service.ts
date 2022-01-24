@@ -39,7 +39,7 @@ export class AppService {
     const parser = new readLine({ delimiter: '\r\n' });
     this.uBlox.pipe(parser);
     parser.on('data', (data) => {
-      // console.debug(`${Date.now()}: ${data}`);
+      this.logger.log(data);
       this.processNMEA(data);
     });
   }

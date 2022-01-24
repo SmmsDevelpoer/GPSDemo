@@ -6,7 +6,7 @@ async function bootstrap() {
     logger:
       process.env.NODE_ENV === 'development'
         ? ['log', 'debug', 'error', 'verbose', 'warn']
-        : ['log', 'error', 'warn']
+        : ['error', 'warn'],
   });
   await app.listen(3000);
 }
