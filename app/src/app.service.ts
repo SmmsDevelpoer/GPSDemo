@@ -29,9 +29,9 @@ export class AppService {
     );
 
     this.uBlox.on('open', (error) => {
-      console.log('serial port open success.');
+      this.logger.log('u-Blox open success.');
       if (error) {
-        console.log('serial port open fail.');
+        this.logger.error('u-Blox open failed.', '');
       }
     });
 
@@ -39,7 +39,7 @@ export class AppService {
     const parser = new readLine({ delimiter: '\r\n' });
     this.uBlox.pipe(parser);
     parser.on('data', (data) => {
-      this.logger.log(data);
+      // this.logger.debug(data);
       this.processNMEA(data);
     });
   }
@@ -62,7 +62,7 @@ export class AppService {
   }
 
   public coldReset() {
-    this.logger.log('Write cold reset to u-blox');
+    this.logger.log('Write cold reset to u-Blox');
     const data = [
       0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0xff, 0xb9, 0x01, 0x00, 0xc7, 0x8d,
     ];
@@ -80,7 +80,7 @@ export class AppService {
   }
 
   public warmReset() {
-    this.logger.log('Write warm reset to u-blox');
+    this.logger.log('Write warm reset to u-Blox');
     const data = [
       0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0x01, 0x00, 0x01, 0x00, 0x10, 0x6a,
     ];
@@ -98,7 +98,7 @@ export class AppService {
   }
 
   public hotReset() {
-    this.logger.log('Write hot reset to u-blox');
+    this.logger.log('Write hot reset to u-Blox');
     const data = [
       0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x0f, 0x6a,
     ];
