@@ -16,9 +16,27 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('writeComPort')
-  writeComPort(): string {
-    this.appService.writeToUBlox();
+  @Get('sendVersion')
+  sendVersion(): string {
+    this.appService.sendVersion();
+    return this.appService.getHello();
+  }
+
+  @Get('coldReset')
+  coldReset(): string {
+    this.appService.coldReset();
+    return this.appService.getHello();
+  }
+
+  @Get('warmReset')
+  warmReset(): string {
+    this.appService.warmReset();
+    return this.appService.getHello();
+  }
+
+  @Get('hotReset')
+  hotReset(): string {
+    this.appService.hotReset();
     return this.appService.getHello();
   }
 }
