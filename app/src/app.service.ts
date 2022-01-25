@@ -49,6 +49,11 @@ export class AppService {
     // const data = [0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0xff, 0xb9, 0x01, 0x00, 0xc7, 0x8d]; // Cold reset
     // const data = [0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0x01, 0x00, 0x01, 0x00, 0x10, 0x6A]; // Warm reset
     // const data = [0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x0f, 0x6a]; // Hot reset
+    if (!this.uBlox) {
+      this.logger.error('u-Blox not open yet', '');
+      return;
+    }
+
     this.uBlox.write(data, (error) => {
       if (error) {
         this.logger.error('Error on write data to com port', '');
@@ -61,6 +66,11 @@ export class AppService {
     const data = [
       0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0xff, 0xb9, 0x01, 0x00, 0xc7, 0x8d,
     ];
+
+    if (!this.uBlox) {
+      this.logger.error('u-Blox not open yet', '');
+      return;
+    }
 
     this.uBlox.write(data, (error) => {
       if (error) {
@@ -75,6 +85,11 @@ export class AppService {
       0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0x01, 0x00, 0x01, 0x00, 0x10, 0x6a,
     ];
 
+    if (!this.uBlox) {
+      this.logger.error('u-Blox not open yet', '');
+      return;
+    }
+
     this.uBlox.write(data, (error) => {
       if (error) {
         this.logger.error('Error on write data to com port', '');
@@ -87,6 +102,11 @@ export class AppService {
     const data = [
       0xb5, 0x62, 0x06, 0x04, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x0f, 0x6a,
     ];
+
+    if (!this.uBlox) {
+      this.logger.error('u-Blox not open yet', '');
+      return;
+    }
 
     this.uBlox.write(data, (error) => {
       if (error) {
